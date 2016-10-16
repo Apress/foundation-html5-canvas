@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				var image = new Image();
+				image.src = "example.jpg";
+				//image.src = "http://farm6.static.flickr.com/5049/5276426031_630ed90b4e.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0);
+				});
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Making things move</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				var canvasWidth = canvas.width();
+				var canvasHeight = canvas.height();
+				
+				var playAnimation = true;
+				var x = 0;
+				
+				var startButton = $("#startAnimation");
+				var stopButton = $("#stopAnimation");
+				
+				startButton.hide();
+				startButton.click(function() {
+					$(this).hide();
+					stopButton.show();
+					
+					playAnimation = true;
+					animate();
+				});
+				
+				stopButton.click(function() {
+					$(this).hide();
+					startButton.show();
+					
+					playAnimation = false;
+				});
+				
+				// Animation loop that does all the fun stuff
+				function animate() {
+					// Update
+					x++;
+					
+					// Clear
+					context.clearRect(0, 0, canvasWidth, canvasHeight);
+					
+					// Draw
+					context.fillRect(x, 250, 10, 10);
+					
+					if (playAnimation) {
+						// Run the animation loop again in 33 milliseconds
+						setTimeout(animate, 33);
+					};
+				};
+				
+				// Start the animation loop
+				animate();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		<div>
+			<button id="startAnimation">Start</button>
+			<button id="stopAnimation">Stop</button>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Learning the basics of canvas</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				var text = "Hello, World!"; // String of text to display
+				context.font = "italic 30px serif";// Change the size and font
+				context.fillText(text, 40, 40); // Draw the text
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				//var gradient = context.createLinearGradient(0, 0, 0, canvas.height());
+				//gradient.addColorStop(0, "rgb(0, 0, 0)");
+				//gradient.addColorStop(1, "rgb(255, 255, 255)");
+				
+				//context.fillStyle = gradient;
+				//context.fillRect(0, 0, canvas.width(), canvas.height());
+				
+				var canvasCentreX = canvas.width()/2;
+				var canvasCentreY = canvas.height()/2;
+				
+				var gradient = context.createRadialGradient(canvasCentreX, canvasCentreY, 0, canvasCentreX, canvasCentreY, 250);
+				gradient.addColorStop(0, "rgb(0, 0, 0)");
+				gradient.addColorStop(1, "rgb(150, 150, 150)");
+				
+				context.fillStyle = gradient;
+				context.fillRect(0, 0, canvas.width(), canvas.height());
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

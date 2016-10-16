@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// A triangle
+				//context.beginPath();
+				//context.moveTo(100, 50);
+				//context.lineTo(150, 150);
+				//context.lineTo(50, 150);
+				//context.closePath();
+				//context.stroke();
+				//context.fill();
+				
+				// A quadratic Bezier curve
+				//context.lineWidth = 5;
+				//context.beginPath();
+				//context.moveTo(50, 250);
+				//context.quadraticCurveTo(250, 100, 450, 250);
+				//context.stroke();
+			
+				// A cubic Bezier curve
+				context.lineWidth = 5;
+				context.beginPath();
+				context.moveTo(50, 250);
+				context.bezierCurveTo(150, 50, 350, 450, 450, 250);
+				context.stroke();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

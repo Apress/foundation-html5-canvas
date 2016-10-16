@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				context.save();
+				context.fillRect(50, 50, 100, 100);
+				
+				context.fillStyle = "rgb(255, 0, 0)";
+				context.fillRect(100, 100, 100, 100);
+				
+				context.restore();
+				context.fillRect(150, 150, 100, 100);
+				
+				// Convert the canvas into an image data URL
+				var dataURL = canvas.get(0).toDataURL();
+				var img = $("<img></img>");
+				img.attr("src", dataURL);
+				
+				// Replace the canvas with the image of the canvas
+				canvas.replaceWith(img);
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

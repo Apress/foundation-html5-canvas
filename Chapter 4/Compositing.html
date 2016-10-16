@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// Global alpha
+				//context.fillStyle = "rgb(63, 169, 245)";
+				//context.fillRect(50, 50, 100, 100);
+				//context.globalAlpha = 0.5;
+				//context.fillStyle = "rgb(255, 123, 172)";
+				//context.fillRect(100, 100, 100, 100);
+				
+				// Composite operations
+				context.fillStyle = "rgb(63, 169, 245)";
+				context.fillRect(50, 50, 100, 100);
+				context.globalCompositeOperation = "source-over";
+				context.fillStyle = "rgb(255, 123, 172)";
+				context.fillRect(100, 100, 100, 100);
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

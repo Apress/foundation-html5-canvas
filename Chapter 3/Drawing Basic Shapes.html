@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Learning the basics of canvas</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				context.fillRect(40, 40, 100, 100); // Square
+				context.strokeRect(200, 300, 200, 100); // Rectangle
+				
+				context.beginPath(); // Start the path
+				context.moveTo(40, 40); // Set the path origin
+				context.lineTo(340, 40); // Set the path destination
+				context.closePath(); // Close the path
+				context.stroke(); // Outline the path
+				
+				context.beginPath(); // Start the path
+				context.arc(230, 90, 50, 0, Math.PI*2, false); // Draw a circle
+				context.closePath(); // Close the path
+				context.fill(); // Fill the path
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

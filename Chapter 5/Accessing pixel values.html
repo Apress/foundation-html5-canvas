@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				/*
+				// Accessing the first pixel
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 500, 333);
+					
+					var imageData = context.getImageData(0, 0, 3, 3); // 3x3 grid
+					var pixel = imageData.data; // CanvasPixelArray
+					
+					var red = pixel[0];
+					var green = pixel[1];
+					var blue = pixel[2];
+					var alpha = pixel[3];
+				});
+				*/
+				
+				var image = new Image();
+				image.src = "example.jpg";
+				//image.src = "http://farm6.static.flickr.com/5049/5276426031_630ed90b4e.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 500, 333);
+				});
+				
+				canvas.click(function(e) {
+					var canvasOffset = canvas.offset();
+					var canvasX = Math.floor(e.pageX-canvasOffset.left);
+					var canvasY = Math.floor(e.pageY-canvasOffset.top);
+					
+					var imageData = context.getImageData(canvasX, canvasY, 1, 1);
+					var pixel = imageData.data;
+					var pixelColour = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
+					
+					$("body").css("backgroundColor", pixelColour);
+				});
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

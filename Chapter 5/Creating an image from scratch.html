@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// Drawing pixels to the canvas
+				var imageData = context.createImageData(200, 200);
+				var pixels = imageData.data;
+				var numPixels = imageData.width*imageData.height;
+				
+				// Access and change pixel values
+				for (var i = 0; i < numPixels; i++) {
+					pixels[i*4] = 255; // Red
+					pixels[i*4+1] = 0; // Green
+					pixels[i*4+2] = 0; // Blue
+					pixels[i*4+3] = 255; // Alpha
+				};
+				
+				// Draw image data to the canvas
+				context.putImageData(imageData, 0, 0);
+				
+				/*
+				// Randomising pixels
+				var imageData = context.createImageData(200, 200);
+				var pixels = imageData.data;
+				var numPixels = imageData.width*imageData.height;
+				
+				// Access and change pixel values
+				for (var i = 0; i < numPixels; i++) {
+					pixels[i*4] = Math.floor(Math.random()*255); // Red
+					pixels[i*4+1] = Math.floor(Math.random()*255); // Green
+					pixels[i*4+2] = Math.floor(Math.random()*255); // Blue
+					pixels[i*4+3] = 255; // Alpha
+				};
+				
+				// Draw image data to the canvas
+				context.putImageData(imageData, 0, 0);
+				*/
+				
+				/*
+				// Creating a mosaic
+				var imageData = context.createImageData(500, 500);
+				var pixels = imageData.data;
+				
+				// Number of mosaic segments
+				var numTileRows = 4;
+				var numTileCols = 4;
+				
+				// Dimensions of each segment
+				var tileWidth = imageData.width/numTileCols;
+				var tileHeight = imageData.height/numTileRows;
+				
+				// Loop through each tile
+				for (var r = 0; r < numTileRows; r++) {
+					for (var c = 0; c < numTileCols; c++) {
+						// Set the pixel values for each tile
+						var red = Math.floor(Math.random()*255);
+						var green = Math.floor(Math.random()*255);
+						var blue = Math.floor(Math.random()*255);
+				
+						// Loop through each tile pixel
+						for (var tr = 0; tr < tileHeight; tr++) {
+							for (var tc = 0; tc < tileWidth; tc++) {
+								// Calculate the true position of the tile pixel
+								var trueX = (c*tileWidth)+tc;
+								var trueY = (r*tileHeight)+tr;
+						
+								// Calculate the position of the current pixel in the array
+								var pos = (trueY*(imageData.width*4))+(trueX*4);
+								
+								// Assign the colour to each pixel
+								pixels[pos] = red;
+								pixels[pos+1] = green;
+								pixels[pos+2] = blue;
+								pixels[pos+3] = 255;
+							};
+						};
+					};
+				};
+				
+				// Draw image data to the canvas
+				context.putImageData(imageData, 0, 0);
+				*/
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

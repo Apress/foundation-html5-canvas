@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Making things move</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				var canvasWidth = canvas.width();
+				var canvasHeight = canvas.height();
+				
+				var playAnimation = true;
+				
+				var startButton = $("#startAnimation");
+				var stopButton = $("#stopAnimation");
+				
+				startButton.hide();
+				startButton.click(function() {
+					$(this).hide();
+					stopButton.show();
+					
+					playAnimation = true;
+					animate();
+				});
+				
+				stopButton.click(function() {
+					$(this).hide();
+					startButton.show();
+					
+					playAnimation = false;
+				});
+				
+				/*
+				var firstX = 0;
+				var secondX = 50;
+				var thirdX = 100;
+				
+				// Animation loop that does all the fun stuff
+				function animate() {
+					// Update
+					firstX++;
+					secondX++;
+					thirdX++;
+					
+					// Clear
+					context.clearRect(0, 0, canvasWidth, canvasHeight);
+					
+					// Draw
+					context.fillRect(firstX, 50, 10, 10);
+					context.fillRect(secondX, 100, 10, 10);
+					context.fillRect(thirdX, 150, 10, 10);
+					
+					if (playAnimation) {
+						// Run the animation loop again in 33 milliseconds
+						setTimeout(animate, 33);
+					};
+				};
+				
+				// Start the animation loop
+				animate();
+				*/
+				
+				// Class that defines new shapes to draw
+				var Shape = function(x, y, width, height) {
+					this.x = x;
+					this.y = y;
+					this.width = width;
+					this.height = height;
+				};
+				
+				// Array that holds all the shapes to draw
+				var shapes = new Array();
+				
+				// Setting up some shapes
+				for (var i = 0; i < 10; i++) {
+					var x = Math.random()*250;
+					var y = Math.random()*250;
+					var width = height = Math.random()*30;
+					shapes.push(new Shape(x, y, width, height));
+				};
+				
+				// Animation loop that does all the fun stuff
+				function animate() {
+					// Clear
+					context.clearRect(0, 0, canvasWidth, canvasHeight);
+					
+					// Loop through every shape
+					var shapesLength = shapes.length;
+					for (var i = 0; i < shapesLength; i++) {
+						var tmpShape = shapes[i];
+						
+						// Update
+						// Move each shape 1 pixel to the right
+						tmpShape.x++;
+						
+						// Draw
+						context.fillRect(tmpShape.x, tmpShape.y, tmpShape.width, tmpShape.height);
+					};
+					
+					if (playAnimation) {
+						// Run the animation loop again in 33 milliseconds
+						setTimeout(animate, 33);
+					};
+				};
+				
+				// Start the animation loop
+				animate();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+		<div>
+			<button id="startAnimation">Start</button>
+			<button id="stopAnimation">Stop</button>
+		</div>
+	</body>
+</html>

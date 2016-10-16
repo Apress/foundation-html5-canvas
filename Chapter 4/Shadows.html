@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// A basic drop shadow
+				context.shadowBlur = 20;
+				context.shadowColor = "rgb(0, 0, 0)";
+				context.fillRect(50, 50, 100, 100);
+				
+				// Moving the shadow and changing the colour
+				context.shadowBlur = 0;
+				context.shadowOffsetX = 10;
+				context.shadowOffsetY = 10;
+				context.shadowColor = "rgba(100, 100, 100, 0.5)"; // Transparent grey
+				context.fillRect(200, 50, 100, 100);
+				
+				// Shadows on other shapes
+				context.shadowColor = "rgb(255, 0, 0)"; // Red
+				context.shadowBlur = 50;
+				context.shadowOffsetX = 0;
+				context.shadowOffsetY = 0;
+				context.beginPath();
+				context.arc(400, 100, 50, 0, Math.PI*2, false);
+				context.closePath();
+				context.fill();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

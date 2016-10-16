@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Pushing canvas further</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// Translate (the wrong way)
+				//context.fillRect(150, 150, 100, 100);
+				
+				//context.translate(150, 150);
+				//context.fillStyle = "rgb(255, 0, 0)";
+				//context.fillRect(150, 150, 100, 100);
+				
+				// Translate (the right way)
+				context.translate(150, 150);
+				context.fillStyle = "rgb(255, 0, 0)";
+				context.fillRect(0, 0, 100, 100);
+				
+				// Scaling off
+				//context.fillRect(150, 150, 100, 100);
+				
+				// Scaling on, but the origin is being scaled too
+				//context.scale(2, 2);
+				//context.fillRect(150, 150, 100, 100);
+				
+				// Scaling on, without scaling the origin
+				//context.save();
+				//context.translate(150, 150);
+				//context.scale(2, 2);
+				//context.fillRect(0, 0, 100, 100);
+				
+				//context.restore();
+				//context.fillRect(0, 0, 100, 100);
+				
+				// Rotate (the wrong way)
+				//context.rotate(0.7854); // Rotate 45 degrees about the canvas origin
+				//context.fillRect(150, 150, 100, 100);
+				
+				// Rotate (the right way)
+				//context.translate(200, 200); // Translate to centre of square
+				//context.rotate(0.7854); // Rotate 45 degrees
+				//context.fillRect(-50, -50, 100, 100); // Draw a square with the centre at the rotation point
+				
+				// Transform - No change
+				//context.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix (aka. no change)
+				//context.fillRect(150, 150, 100, 100);
+				
+				// Transform - Scale and translate
+				//context.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+				//context.transform(2, 0, 0, 2, 150, 150);
+				//context.fillRect(0, 0, 100, 100);
+				
+				// Transform - Rotate and translate
+				//context.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+				
+				//var xScale = Math.cos(0.7854);
+				//var ySkew = -Math.sin(0.7854);
+				//var xSkew = Math.sin(0.7854);
+				//var yScale = Math.cos(0.7854);
+				//var xTrans = 200;
+				//var yTrans = 200;
+				
+				//context.transform(xScale, ySkew, xSkew, yScale, xTrans, yTrans);
+				//context.fillRect(-50, -50, 100, 100);
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

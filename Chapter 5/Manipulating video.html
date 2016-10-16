@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var video = $("#myVideo");
+				
+				// Trigger for video play button
+				$("#play").click(function() {
+					video.get(0).play();
+				});
+				
+				// Trigger for video stop button
+				$("#stop").click(function() {
+					video.get(0).pause();
+				});		
+				
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				video.bind("play", function() {
+					drawCanvas();
+				});
+				
+				function drawCanvas() {
+					if (video.get(0).paused || video.get(0).ended)
+						return false;
+						
+					context.drawImage(video.get(0), 0, 0, 500, 281);
+					
+					var imageData = context.getImageData(0, 0, canvas.width(), canvas.height());
+					var pixels = imageData.data;
+					
+					// Clear the image
+					context.clearRect(0, 0, canvas.width(), canvas.height());
+					
+					// Number of tiles
+					var numTileRows = 36;
+					var numTileCols = 64;
+					
+					// Dimensions of each tile
+					var tileWidth = imageData.width/numTileCols;
+					var tileHeight = imageData.height/numTileRows;
+					
+					// Loop through each tile
+					for (var r = 0; r < numTileRows; r++) {
+						for (var c = 0; c < numTileCols; c++) {
+							var x = (c*tileWidth)+(tileWidth/2);
+							var y = (r*tileHeight)+(tileHeight/2);
+							
+							// Use Math.floor to convert the pixel positions to integers
+							var pos = (Math.floor(y)*(imageData.width*4))+(Math.floor(x)*4);
+							
+							var red = pixels[pos];
+							var green = pixels[pos+1];
+							var blue = pixels[pos+2];
+							
+							context.fillStyle = "rgb("+red+", "+green+", "+blue+")";
+							
+							// Draw the pixelated rectangle
+							context.fillRect(x-(tileWidth/2), y-(tileHeight/2), tileWidth, tileHeight);
+							
+							// Or, how about circles?
+							//context.beginPath();
+							//context.arc(x, y, tileWidth/2, 0, Math.PI*2);
+							//context.closePath();
+							//context.fill();
+						};
+					};
+					
+					setTimeout(drawCanvas, 30);
+				};
+			});
+		</script>
+	</head>
+	
+	<body>				
+		<canvas id="myCanvas" width="500" height="281">
+			<video id="myVideo" width="500" height="281" controls="true">
+				<source src="example.mp4" type="video/mp4"></source>
+				<source src="example.ogg" type="video/ogg"></source>
+			</video>			
+		</canvas>
+		
+		<div>
+			<button id="play">Play</button>
+			<button id="stop">Stop</button>
+		</div>
+	</body>
+</html>

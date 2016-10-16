@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// Translating an image
+				context.translate(100, 100);
+				
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 500, 500, 0, 0, 300, 300);
+				});
+				
+				/*
+				// Rotating an image
+				context.translate(250, 250);
+				context.rotate(0.7854); // Rotate 45 degrees
+				
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 500, 500, -150, -150, 300, 300);
+				});
+				*/
+				
+				/*
+				// Scaling and flipping
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					// Top left
+					context.translate(50, 50);
+					context.drawImage(image, 0, 0, 500, 500, 0, 0, 200, 200);
+					
+					// Bottom left
+					context.setTransform(1, 0, 0, 1, 0, 0); // Reset the transformation matrix
+					context.translate(50, 450);
+					context.scale(1, -1);
+					
+					context.drawImage(image, 0, 0, 500, 500, 0, 0, 200, 200);
+				
+					// Bottom right
+					context.setTransform(1, 0, 0, 1, 0, 0);
+					context.translate(450, 450);
+					context.scale(-1, -1);
+					
+					context.drawImage(image, 0, 0, 500, 500, 0, 0, 200, 200);
+					
+					// Top right
+					context.setTransform(1, 0, 0, 1, 0, 0);
+					context.translate(450, 50);
+					context.scale(-1, 1);
+					
+					context.drawImage(image, 0, 0, 500, 500, 0, 0, 200, 200);
+				});
+				*/
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

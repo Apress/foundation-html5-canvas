@@ -1,0 +1,17 @@
+* { margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; }
+canvas { display: block; }
+
+#myCanvas {
+	background: #001022;
+}
+
+#myButtons {
+	bottom: 20px;
+	left: 20px;
+	position: absolute;
+}
+
+#myButtons button {
+	padding: 5px;
+}

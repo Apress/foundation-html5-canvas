@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Learning the basics of canvas</title>
+		<meta charset="utf-8">
+		
+		<link href="canvas.css" rel="stylesheet" type="text/css">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				$(window).resize(resizeCanvas);
+				
+				function resizeCanvas() {
+					canvas.attr("width", $(window).get(0).innerWidth);
+					canvas.attr("height", $(window).get(0).innerHeight);
+					context.fillRect(0, 0, canvas.width(), canvas.height());
+				};
+				
+				resizeCanvas();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

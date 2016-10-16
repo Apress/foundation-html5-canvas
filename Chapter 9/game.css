@@ -1,0 +1,82 @@
+* { margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; }
+canvas { display: block; }
+
+body {
+	background: #000;
+	color: #fff;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 18px;	
+}
+
+h1 {
+	font-size: 30px;
+}
+
+p {
+	margin: 0 20px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a.button {
+	background: #185da8;
+	border-radius: 5px;
+	display: block;
+	font-size: 30px;
+	margin: 40px 0 0 270px;
+	padding: 10px;
+	width: 200px;
+}
+
+a.button:hover {
+	background: #2488f5;
+	color: #fff;
+	text-decoration: none;
+}
+
+#game {
+	height: 600px;
+	left: 50%;
+	margin: -300px 0 0 -400px;
+	position: relative;
+	top: 50%;
+	width: 800px;
+}
+
+#gameCanvas {
+	background: #001022;
+}
+
+#gameUI {
+	height: 600px;
+	position: absolute; /* Places UI on top of the canvas */
+	width: 800px;
+}
+
+
+#gameIntro, #gameComplete {
+	background: rgba(0, 0, 0, 0.5);
+	margin-top: 100px;
+	padding: 40px 0;
+	text-align: center;
+}
+
+#gameStats {
+	font-size: 14px;
+	margin: 20px 0;
+}
+
+#gameStats .gameReset {
+	margin: 20px 20px 0 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}

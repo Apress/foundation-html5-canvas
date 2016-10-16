@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>The DOM</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// JavaScript will go in here
+				var secondaryHeadings = $("h2");
+				secondaryHeadings.html("Now we've change the content");
+			});
+		</script>
+	</head>
+	
+	<body>
+		<section id="blogArticles">
+			<article>
+				<header>
+					<hgroup>
+						<h1><a href="/blog/first-post-link/">Main heading of the first blog post</a></h1>
+						<h2>Sub-heading of the first blog post</h2>
+					</hgroup>
+					<p>Posted on the <time pubdate datetime="2010-10-30T13:08">30 October 2010 at 1:08 PM</time></p>
+				</header>
+				
+				<p>Summary of the first blog post.</p>
+			</article>
+		</section>
+	</body>
+</html>

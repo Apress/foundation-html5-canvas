@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				// Inverting
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 1024, 683, 0, 0, 500, 500);
+					
+					var imageData = context.getImageData(0, 0, canvas.width(), canvas.height());
+					var pixels = imageData.data;
+					var numPixels = pixels.length;
+					
+					// Clear the image
+					context.clearRect(0, 0, canvas.width(), canvas.height());
+				
+					// Access and change pixel values
+					for (var i = 0; i < numPixels; i++) {
+						pixels[i*4] = 255-pixels[i*4]; // Red
+						pixels[i*4+1] = 255-pixels[i*4+1]; // Green
+						pixels[i*4+2] = 255-pixels[i*4+2]; // Blue
+					};
+					
+					// Draw image data to the canvas
+					context.putImageData(imageData, 0, 0);
+				});
+				
+				/*
+				// Grayscale
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 1024, 683, 0, 0, 500, 500);
+					
+					var imageData = context.getImageData(0, 0, canvas.width(), canvas.height());
+					var pixels = imageData.data;
+					var numPixels = pixels.length;
+					
+					// Clear the image
+					context.clearRect(0, 0, canvas.width(), canvas.height());
+				
+					// Access and change pixel values
+					for (var i = 0; i < numPixels; i++) {
+						var average = (pixels[i*4]+pixels[i*4+1]+pixels[i*4+2])/3;
+						pixels[i*4] = average; // Red
+						pixels[i*4+1] = average; // Green
+						pixels[i*4+2] = average; // Blue
+					};
+					
+					// Draw image data to the canvas
+					context.putImageData(imageData, 0, 0);
+				});
+				*/
+				
+				/*
+				// Pixelating
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 1024, 683, 0, 0, 500, 500);
+					
+					var imageData = context.getImageData(0, 0, canvas.width(), canvas.height());
+					var pixels = imageData.data;
+					
+					// Clear the image
+					context.clearRect(0, 0, canvas.width(), canvas.height());
+					
+					// Number of tiles
+					var numTileRows = 20;
+					var numTileCols = 20;
+					
+					// Dimensions of each tile
+					var tileWidth = imageData.width/numTileCols;
+					var tileHeight = imageData.height/numTileRows;
+					
+					// Loop through each tile
+					for (var r = 0; r < numTileRows; r++) {
+						for (var c = 0; c < numTileCols; c++) {
+							var x = (c*tileWidth)+(tileWidth/2);
+							var y = (r*tileHeight)+(tileHeight/2);
+							
+							// Use Math.floor to convert the pixel positions to integers
+							var pos = (Math.floor(y)*(imageData.width*4))+(Math.floor(x)*4);
+							
+							var red = pixels[pos];
+							var green = pixels[pos+1];
+							var blue = pixels[pos+2];
+							
+							context.fillStyle = "rgb("+red+", "+green+", "+blue+")";
+							
+							// Draw the pixelated rectangle
+							context.fillRect(x-(tileWidth/2), y-(tileHeight/2), tileWidth, tileHeight);
+							
+							// Or, how about circles?
+							//context.beginPath();
+							//context.arc(x, y, tileWidth/2, 0, Math.PI*2);
+							//context.closePath();
+							//context.fill();
+						};
+					};
+				});
+				*/
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

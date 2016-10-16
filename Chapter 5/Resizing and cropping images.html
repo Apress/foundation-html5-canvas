@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Manipulating images and video</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				/*
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 500, 333);
+				});
+				*/
+				/*
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 250, 250, 0, 0, 250, 250);
+				});
+				*/
+				
+				/*
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					context.drawImage(image, 0, 0, 250, 250, 0, 0, 500, 500);
+				});
+				*/
+				
+				
+				// Cropping an image will affect shadows
+				context.shadowBlur = 20;
+				context.shadowColor = "rgb(0, 0, 0)";
+				
+				var image = new Image();
+				image.src = "example.jpg";
+				$(image).load(function() {
+					//context.drawImage(image, 0, 0, 250, 250, 50, 50, 250, 250);
+					
+					// Shadows will show if you don't crop the image
+					context.drawImage(image, 50, 50, 300, 200);
+				});
+				
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>

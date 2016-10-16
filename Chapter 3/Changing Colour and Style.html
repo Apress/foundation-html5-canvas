@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Learning the basics of canvas</title>
+		<meta charset="utf-8">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				var canvas = $("#myCanvas");
+				var context = canvas.get(0).getContext("2d");
+				
+				context.lineWidth = 5; // Make lines thick
+				
+				context.strokeStyle = "rgb(255, 0, 0)";
+				context.strokeRect(40, 40, 100, 100); // Red square
+				context.strokeRect(180, 40, 100, 100); // Red square
+				
+				context.lineWidth = 20; // Make lines even thicker
+				
+				context.strokeStyle = "rgb(0, 0, 0)";
+				context.strokeRect(320, 40, 100, 100); // Black square
+				
+				context.lineWidth = 5; // Make lines thick
+				
+				context.strokeStyle = "rgb(255, 0, 0)";
+				context.beginPath();
+				context.moveTo(40, 180);
+				context.lineTo(420, 180); // Red line
+				context.closePath();
+				context.stroke();
+				
+				context.lineWidth = 20; // Make lines even thicker
+				
+				context.strokeStyle = "rgb(0, 0, 0)";
+				context.beginPath();
+				context.moveTo(40, 220);
+				context.lineTo(420, 220); // Black line
+				context.closePath();
+				context.stroke();
+			});
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="myCanvas" width="500" height="500">
+			<!-- Insert fallback content here -->
+		</canvas>
+	</body>
+</html>
